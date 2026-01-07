@@ -1,0 +1,31 @@
+{
+  "name": "js-breakpoint-debugger",
+  "displayName": "Js Breakpoint Debugger",
+  "description": "Automatically insert and remove debugger; on breakpoints",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact",
+    "onLanguage:svelte",
+    "onLanguage:vue"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {},
+  "scripts": {
+    "build": "tsc -p ./ && vsce package -o dist/js-breakpoint-debugger-0.0.1.vsix"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "vscode": "^1.1.37"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abdalazez-Sabry/js-breakpoint-debugger"
+  },
+  "license": "MIT"
+}
