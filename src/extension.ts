@@ -2,10 +2,23 @@ import * as vscode from "vscode";
 
 const debug = "debugger;";
 
+const supportedLanguages = [
+  "javascript",
+  "typescript",
+  "javascriptreact",
+  "typescriptreact",
+  "svelte",
+  "vue",
+];
+
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.debug.onDidChangeBreakpoints((event) => {
     const editor = vscode.window.activeTextEditor;
     if (!editor) return;
+
+    if (!supportedLanguages.includes(editor.document.languageId)) {
+      return;
+    }
 
     event.added.forEach((bp) => {
       if (
