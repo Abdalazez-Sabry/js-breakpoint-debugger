@@ -45,23 +45,17 @@ export function activate(context: vscode.ExtensionContext) {
         bp.location.uri.toString() === editor.document.uri.toString()
       ) {
         const lineNum = bp.location.range.start.line;
-        const startLine = Math.max(0, lineNum - 5);
-        const endLine = Math.min(editor.document.lineCount - 1, lineNum + 5);
+        const line = editor.document.lineAt(lineNum);
 
-        for (let l = startLine; l <= endLine; l++) {
-          const textLine = editor.document.lineAt(l);
-          const trimmed = textLine.text.trim();
-          if (trimmed === debug) {
-            editor.edit((editBuilder) => {
-              const deleteRange = new vscode.Range(
-                new vscode.Position(l, 0),
-                new vscode.Position(l + 1, 0)
-              );
-              editBuilder.delete(deleteRange);
-            });
-            break;
+        editor.edit((editBuilder) => {
+          if (line.text.trim() === debug) {
+            const deleteRange = new vscode.Range(
+              new vscode.Position(lineNum, 0),
+              new vscode.Position(lineNum + 1, 0)
+            );
+            editBuilder.delete(deleteRange);
           }
-        }
+        });
       }
     });
   });
