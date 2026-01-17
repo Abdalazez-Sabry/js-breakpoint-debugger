@@ -17,7 +17,7 @@
   "main": "./out/extension.js",
   "contributes": {},
   "scripts": {
-    "build": "tsc -p ./ && vsce package -o dist/js-breakpoint-debugger-0.0.1.vsix"
+    "build": "tsc -p ./ && npx vsce package -o dist/js-breakpoint-debugger-0.0.1.vsix"
   },
   "devDependencies": {
     "typescript": "^5.1.6",

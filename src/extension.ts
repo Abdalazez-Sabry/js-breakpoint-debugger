@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
         editor.edit((editBuilder) => {
           editBuilder.insert(
             new vscode.Position(lineNum, 0),
-            `${indent}${debug}\n`
+            `${indent}${debug}\n`,
           );
         });
       }
@@ -48,10 +48,12 @@ export function activate(context: vscode.ExtensionContext) {
         const line = editor.document.lineAt(lineNum);
 
         editor.edit((editBuilder) => {
-          if (line.text.trim() === debug) {
+          if (
+            [debug, debug.slice(0, debug.length - 1)].includes(line.text.trim())
+          ) {
             const deleteRange = new vscode.Range(
               new vscode.Position(lineNum, 0),
-              new vscode.Position(lineNum + 1, 0)
+              new vscode.Position(lineNum + 1, 0),
             );
             editBuilder.delete(deleteRange);
           }
